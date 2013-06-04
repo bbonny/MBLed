@@ -1,0 +1,40 @@
+#ifndef H_POSITION
+#define H_POSITION
+
+typedef struct Coo{
+  int8_t i;
+  int8_t j;
+}Coo;
+
+int8_t block_ok(int block);
+int8_t block_in(int block);
+int8_t block_leader(int block);
+void set_blocks_out();
+void set_block_in(int block, int pbID);
+void set_block_out(int block);
+void set_block_leader(int block, int leader);
+void set_block_position(int block, int i, int j);
+int8_t* get_block(int8_t id);
+int8_t* get_block_me();
+
+int8_t getDirectionTable(int i );
+void shift_direction_table(uint8_t direction);
+
+
+void setDirectionID(int i);
+void addDirectionID();
+
+
+void network_init();
+void position_send(uint8_t interface, uint8_t ttl);
+void position_receive(Packet mess);
+void position_spread(uint8_t forbiddenInterface, uint8_t ttl);
+void position_calculate(Coo* coo, uint8_t interface);
+
+
+
+int is_my_position(int i, int j);
+uint8_t distance_from_leader();
+int find_same_position (int i, int j);
+void who_is_in_this_position (int8_t* whoIsHere,int i, int j);
+#endif

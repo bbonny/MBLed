@@ -1,0 +1,15 @@
+<<<<<<< HEAD
+#include "psyche20044.h"
+
+#define MAX_IMAGES 9
+
+const AnimationDescriptor * animationList[] = {&psyche20044, 0};
+=======
+#include "smallmegaman2000202.h"
+#include "mediummegaman2000303.h"
+#include "bigmegaman2000404.h"
+
+#define MAX_IMAGES 10
+
+const AnimationDescriptor * animationList[] = {&smallmegaman2000202, &mediummegaman2000303, &bigmegaman2000404, 0};
+>>>>>>> Changement d'animation en fonction de la taille... Attente du code de benj

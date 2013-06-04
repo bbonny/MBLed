@@ -1,0 +1,464 @@
+/*
+ * morpion.c
+ *
+ * Application for the morpion 
+ *
+ * Copyright 2011 - Benjamin Bonny    <benjamin.bonny@gmail.com>,
+ *                  Cédric Le Ninivin <cedriclen@gmail.com>,
+ *                  Guillaume Normand <guillaume.normand.gn@gmail.com>          
+ *
+ * All rights reserved.
+ * MB Led
+ * Telecom ParisTech - ELECINF344/ELECINF381
+ *
+ * This file is part of MB Led Project.
+ *
+ * MB Led Project is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * MB Led Project is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with MB Led Project.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ *
+ */
+
+#include "application.h"
+#include "morpion.h"
+#include "morpion_sprites.h"
+
+#include "graphic_barre.h"
+#include "various_graphic.h"
+
+
+static morpion_game_state state;
+static unsigned short current[64];
+static uint8_t current_selected;
+
+// we define here the winning combinations
+const static uint8_t winGameState[72] = {
+  1, 1, 1, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 1, 1, 1, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 1, 1, 1,
+  1, 0, 0, 1, 0, 0, 1, 0, 0,
+  0 ,1, 0, 0, 1, 0, 1, 0, 1,
+  0, 0, 1, 0, 0, 1, 0, 0, 1,
+  1, 0, 0, 0, 1, 0, 0, 0, 1,
+  0, 0, 1, 0, 1, 0, 1, 0, 0
+}; 
+
+<<<<<<< HEAD
+const static pixel_t cross_sprite[64] = {CROSS(0x00f)};
+const static pixel_t circle_sprite[64] = {CIRCLE(0x0f0)};
+//static pixel_t arrow_sprite[64] = {ARROW(0x0ff)};
+
+const static pixel_t L_ZERO[64]={LETTER_0(0xfff)};
+const static pixel_t L_UN[64]={LETTER_1(0xfff)};
+const static pixel_t L_DEUX[64]={LETTER_2(0xfff)};
+const static pixel_t L_TROIS[64]={LETTER_3(0xfff)};
+const static pixel_t L_QUATRE[64]={LETTER_4(0xfff)};
+const static pixel_t L_CINQ[64]={LETTER_5(0xfff)};
+const static pixel_t L_SIX[64]={LETTER_6(0xfff)};
+const static pixel_t L_SEPT[64]={LETTER_7(0xfff)};
+const static pixel_t L_HUIT[64]={LETTER_8(0xfff)};
+
+const static pixel_t L_ZERO_R[64]={LETTER_0(0xf00)};
+const static pixel_t L_UN_R[64]={LETTER_1(0xf00)};
+const static pixel_t L_DEUX_R[64]={LETTER_2(0xf00)};
+const static pixel_t L_TROIS_R[64]={LETTER_3(0xf00)};
+const static pixel_t L_QUATRE_R[64]={LETTER_4(0xf00)};
+const static pixel_t L_CINQ_R[64]={LETTER_5(0xf00)};
+const static pixel_t L_SIX_R[64]={LETTER_6(0xf00)};
+const static pixel_t L_SEPT_R[64]={LETTER_7(0xf00)};
+const static pixel_t L_HUIT_R[64]={LETTER_8(0xf00)};
+=======
+static pixel_t cross_sprite[64] = {CROSS(0x00f)};
+static pixel_t circle_sprite[64] = {CIRCLE(0x0f0)};
+//static pixel_t arrow_sprite[64] = {ARROW(0x0ff)};
+
+static pixel_t L_ZERO[64]={LETTER_0(0xfff)};
+static pixel_t L_UN[64]={LETTER_1(0xfff)};
+static pixel_t L_DEUX[64]={LETTER_2(0xfff)};
+static pixel_t L_TROIS[64]={LETTER_3(0xfff)};
+static pixel_t L_QUATRE[64]={LETTER_4(0xfff)};
+static pixel_t L_CINQ[64]={LETTER_5(0xfff)};
+static pixel_t L_SIX[64]={LETTER_6(0xfff)};
+static pixel_t L_SEPT[64]={LETTER_7(0xfff)};
+static pixel_t L_HUIT[64]={LETTER_8(0xfff)};
+
+static pixel_t L_ZERO_R[64]={LETTER_0(0xf00)};
+static pixel_t L_UN_R[64]={LETTER_1(0xf00)};
+static pixel_t L_DEUX_R[64]={LETTER_2(0xf00)};
+static pixel_t L_TROIS_R[64]={LETTER_3(0xf00)};
+static pixel_t L_QUATRE_R[64]={LETTER_4(0xf00)};
+static pixel_t L_CINQ_R[64]={LETTER_5(0xf00)};
+static pixel_t L_SIX_R[64]={LETTER_6(0xf00)};
+static pixel_t L_SEPT_R[64]={LETTER_7(0xf00)};
+static pixel_t L_HUIT_R[64]={LETTER_8(0xf00)};
+>>>>>>> morpion en cours
+
+
+void morpion_set_out_position(){
+  state.position = -1;
+}
+
+void morpion_calcul_position(){
+  int8_t* me;
+
+  network_max_values();
+  me = get_block_me();
+  
+  for(int i=0; i < 3; i++)   // Find my position into the rectangular shape
+    for(int j=0; j < 3  ; j++)	
+      if(me[I] == minI + i && me[J] == minJ + j)
+	state.position =  3 * i + j;
+
+  if(state.position>8) // if position is greater than 8 then the block is not into the game 
+    state.position = -1;
+
+}   
+
+
+/*
+ * This function is called when the network is ready
+ *  - 9 blocks are in square and we know the position of the block UP-LEFT 
+ *
+ */
+void morpion_reset(){ 
+  morpion_calcul_position();
+  for(int i=0; i<9; i++)
+    state.sprites[i] = SPRITE_NONE;
+  
+
+
+  state.player = PLAYER1; // turn of the player 1
+  state.isGameOver = 0; 
+  state.speed = 50;
+  current_selected = 10; // nobody is selected
+  // Here, all the 9 blocks have the same game_state, and no sprites 
+
+}
+
+
+
+/*
+ * Function called when the block receive a YOU_TURN_LEFT message
+ *
+ */
+void morpion_you_turned_left(){
+  // if the block is not already affected
+  if(state.sprites[state.position] == SPRITE_NONE){
+     if(state.player == PLAYER1) // if it's the turn of player 1 then put cross
+       state.sprites[state.position] = SPRITE_CROSS;
+     else // else put CIRCLE
+       state.sprites[state.position] = SPRITE_CIRCLE;
+  }
+}
+
+/*
+ * Function called when the block receive a YOU_TURN_RIGHT message
+ *
+ */
+void morpion_you_turned_right(){
+}
+
+/*
+ * morpion_broadcast_game_state();
+ *
+ * Use this function when the state has changed
+ *
+ */
+void morpion_broadcast_game_state(){
+  
+}
+
+void morpion_refresh(){
+  set_image_pointer(current);
+  lib_image_reset(current);        
+  
+  if(state.position != -1){
+    /*
+    // display the sprite in function of state.position and state.sprites
+    switch (state.sprites[state.position]){
+    case SPRITE_NONE:
+      break;
+    case SPRITE_CIRCLE:
+      lib_image_set_image(current, circle_sprite);
+      break;
+    case SPRITE_CROSS:
+      lib_image_set_image(current, cross_sprite);
+      break;
+    
+      }
+    */
+    switch(state.position){
+    case 0: 
+<<<<<<< HEAD
+      lib_image_set_image(current, (image_t) L_ZERO);
+      break;
+    case 1: 
+      lib_image_set_image(current, (image_t) L_UN);
+      break;
+    case 2: 
+      lib_image_set_image(current, (image_t) L_DEUX);
+      break;
+    case 3: 
+      lib_image_set_image(current, (image_t) L_TROIS);
+      break;
+    case 4: 
+      lib_image_set_image(current, (image_t) L_QUATRE);
+      break;
+    case 5: 
+      lib_image_set_image(current, (image_t) L_CINQ);
+      break;
+    case 6: 
+      lib_image_set_image(current, (image_t) L_SIX);
+      break;
+    case 7: 
+      lib_image_set_image(current, (image_t) L_SEPT);
+      break;
+    case 8: 
+      lib_image_set_image(current, (image_t) L_HUIT);
+=======
+      lib_image_set_image(current, L_ZERO);
+      break;
+    case 1: 
+      lib_image_set_image(current, L_UN);
+      break;
+    case 2: 
+      lib_image_set_image(current, L_DEUX);
+      break;
+    case 3: 
+      lib_image_set_image(current, L_TROIS);
+      break;
+    case 4: 
+      lib_image_set_image(current, L_QUATRE);
+      break;
+    case 5: 
+      lib_image_set_image(current, L_CINQ);
+      break;
+    case 6: 
+      lib_image_set_image(current, L_SIX);
+      break;
+    case 7: 
+      lib_image_set_image(current, L_SEPT);
+      break;
+    case 8: 
+      lib_image_set_image(current, L_HUIT);
+>>>>>>> morpion en cours
+      break;
+    } 
+
+    //display current_selected
+    if(state.position == current_selected){
+      if(state.player == PLAYER1)
+	lib_image_set_image(current,(image_t) cross_sprite);
+      else
+	lib_image_set_image(current,(image_t) circle_sprite);
+    }
+  }
+  else{
+    int8_t *me = get_block_me();
+    uint8_t data[3];
+    data[0] = MORPION_COMMAND_SELECT;
+    data[1] = me[I]-minI;
+    data[2] = me[J]-minJ;
+
+    send_new_command(COMMAND, &data[0], EVERYBODY, 3, 5);
+
+    network_max_values();	
+    switch(me[I]-minI){
+    case 0: 
+<<<<<<< HEAD
+      lib_image_set_image(current, (image_t) L_ZERO_R);
+      break;
+    case 1: 
+      lib_image_set_image(current, (image_t) L_UN_R);
+      break;
+    case 2: 
+      lib_image_set_image(current, (image_t) L_DEUX_R);
+      break;
+    case 3: 
+      lib_image_set_image(current, (image_t) L_TROIS_R);
+      break;
+    case 4: 
+      lib_image_set_image(current, (image_t) L_QUATRE_R);
+      break;
+    case 5: 
+      lib_image_set_image(current, (image_t) L_CINQ_R);
+      break;
+    case 6: 
+      lib_image_set_image(current, (image_t) L_SIX_R);
+      break;
+    case 7: 
+      lib_image_set_image(current, (image_t) L_SEPT_R);
+      break;
+    case 8: 
+      lib_image_set_image(current, (image_t) L_HUIT_R);
+=======
+      lib_image_set_image(current, L_ZERO_R);
+      break;
+    case 1: 
+      lib_image_set_image(current, L_UN_R);
+      break;
+    case 2: 
+      lib_image_set_image(current, L_DEUX_R);
+      break;
+    case 3: 
+      lib_image_set_image(current, L_TROIS_R);
+      break;
+    case 4: 
+      lib_image_set_image(current, L_QUATRE_R);
+      break;
+    case 5: 
+      lib_image_set_image(current, L_CINQ_R);
+      break;
+    case 6: 
+      lib_image_set_image(current, L_SIX_R);
+      break;
+    case 7: 
+      lib_image_set_image(current, L_SEPT_R);
+      break;
+    case 8: 
+      lib_image_set_image(current, L_HUIT_R);
+>>>>>>> morpion en cours
+      break;
+    } 
+  }
+}
+
+
+/*
+ * Check if the party is over
+ * return:
+ *   0 if nobody wins
+ *   1 if cross win
+ *   2 if circle win
+ */
+uint8_t  morpion_check_game(){
+  uint8_t cptCross;
+  uint8_t cptCircle;
+  
+  for(int i=0; i<8; i++){
+    cptCross = 0;
+    cptCircle = 0;
+    for(int j=0; j<9; j++){
+      if((state.sprites[j] == SPRITE_CIRCLE) && (winGameState[i*9+j] == 1))
+	cptCircle ++;
+      else
+	if((state.sprites[j] == SPRITE_CROSS) && (winGameState[i*9+j] == 1))
+	  cptCross ++;
+    }
+    if(cptCross == 3)
+      return 1;
+    if(cptCircle == 3)
+      return 2;
+    
+  }
+  return 0;
+}
+
+void morpion_receive_validate(Packet *p){
+}
+
+void morpion_receive_select(Packet *p){
+  current_selected = p->data[1];
+  send_spread(p, EVERYBODY);
+}
+
+/*
+ * morpion_receive_command_task()
+ * receive the command messages from queue
+ *
+ */
+void morpion_receive_command(void *pvParameters){
+  uint8_t my_id = (unsigned int) pvParameters;
+  Packet p; 
+      
+  for(;;){
+    if(current_demo == my_id){
+      if(state.position != -1){      
+	xQueueReceive(commandQueue, &p, portMAX_DELAY);   // wait for a new message
+	if(p.data[0] == MORPION_COMMAND_VALIDATE)
+	  morpion_receive_validate(&p);
+	if(p.data[0] == MORPION_COMMAND_SELECT)
+	  morpion_receive_select(&p);
+      }
+    }
+    else
+      vTaskDelay(100);
+  }
+}
+
+
+/*
+ * morpion_turn_task()
+ * receive the turn messages from queue
+ *
+ */
+void morpion_turn_task(void *pvParameters){
+  uint8_t my_id = (unsigned int) pvParameters;
+
+  for(;;){
+    uint8_t rotation;  
+    if(current_demo == my_id){
+      if(state.position == -1){
+	xQueueReceive(turnQueue, &(rotation), portMAX_DELAY);   // wait for a rotation of the block
+	int8_t *me = get_block_me();
+	uint8_t data[3];
+	data[0] = MORPION_COMMAND_SELECT;
+	data[1] = me[I]-minI;
+	data[2] = me[J]-minJ;
+
+	send_new_command(COMMAND, &data[0], EVERYBODY, 3, 5);
+     
+      }
+      else
+	vTaskDelay(100);
+    }
+    else
+      vTaskDelay(100);
+  }
+}
+
+
+/*
+ * morpion_task
+ * Main task
+ *
+ */   
+void morpion_task(void *pvParameters){
+  unsigned int my_id = (unsigned int) pvParameters;
+  uint8_t in=0; // am I the current task ?
+  xTaskCreate(morpion_turn_task, ( signed portCHAR * ) "turn detection", configMINIMAL_STACK_SIZE, (void*)my_id, 1, NULL );
+  xTaskCreate(morpion_receive_command, ( signed portCHAR * ) "command detection", configMINIMAL_STACK_SIZE, (void*)my_id, 1, NULL );
+ 
+  for(;;){
+    if(current_demo == my_id){
+      if(in == 0){
+	//while(getMembersInNetwork()!=9){}
+	morpion_reset();
+	in = 1;
+      }
+      set_image_pointer(current); // set current as the image to be displayed
+      if(morpion_check_game()==0){       // check if the game is won
+	//morpion_calcul_position();
+	morpion_refresh();
+	vTaskDelay(state.speed*10);
+      }
+      else 
+	state.isGameOver = 1;
+    }
+    else{
+      in=0;
+      vTaskDelay(100);
+    }
+  }
+}
+

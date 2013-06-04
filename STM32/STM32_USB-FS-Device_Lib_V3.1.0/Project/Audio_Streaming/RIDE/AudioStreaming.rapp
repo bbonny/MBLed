@@ -1,0 +1,177 @@
+
+<ApplicationBuild Header="AudioStreaming" Extern=".\AudioStreaming.rapp" Path=".\AudioStreaming.rapp" OutputFile=".\STM3210C-EVAL\AudioStreaming.elf" sate="98" Config="STM3210C-EVAL-25MHz" >
+	<Configs>
+		<Config Header="STM3210C-EVAL-25MHz" />
+		<Config Header="STM3210C-EVAL-14MHz" />
+																								
+	</Configs>
+	<Group Header="RIDE" Marker="-1" OutputFile="" sate="0" >
+		<NodeASM Path="..\..\..\Libraries\CMSIS\Core\CM3\startup\gcc\startup_stm32f10x_cl.s" Header="startup_stm32f10x_cl.s" Marker="-1" OutputFile=".\STM3210C-EVAL\startup_stm32f10x_cl.o" sate="0" />
+																								
+	</Group>
+	<Group Header="StdPeriph_Driver" Marker="-1" OutputFile="" sate="0" >
+		<NodeC Path="..\..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_spi.c" Header="stm32f10x_spi.c" Marker="-1" OutputFile=".\STM3210C-EVAL\stm32f10x_spi.o" sate="0" />
+		<NodeC Path="..\..\..\Libraries\STM32F10x_StdPeriph_Driver\src\misc.c" Header="misc.c" Marker="-1" OutputFile=".\STM3210C-EVAL\misc.o" sate="0" />
+		<NodeC Path="..\..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_dma.c" Header="stm32f10x_dma.c" Marker="-1" OutputFile=".\STM3210C-EVAL\stm32f10x_dma.o" sate="0" />
+		<NodeC Path="..\..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_exti.c" Header="stm32f10x_exti.c" Marker="-1" OutputFile=".\STM3210C-EVAL\stm32f10x_exti.o" sate="0" />
+		<NodeC Path="..\..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_flash.c" Header="stm32f10x_flash.c" Marker="-1" OutputFile=".\STM3210C-EVAL\stm32f10x_flash.o" sate="0" />
+		<NodeC Path="..\..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c" Header="stm32f10x_gpio.c" Marker="-1" OutputFile=".\STM3210C-EVAL\stm32f10x_gpio.o" sate="0" />
+		<NodeC Path="..\..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_i2c.c" Header="stm32f10x_i2c.c" Marker="-1" OutputFile=".\STM3210C-EVAL\stm32f10x_i2c.o" sate="0" />
+		<NodeC Path="..\..\..\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c" Header="stm32f10x_rcc.c" Marker="-1" OutputFile=".\STM3210C-EVAL\stm32f10x_rcc.o" sate="0" />
+																								
+	</Group>
+	<Group Header="USB-FS-Device_Driver" Marker="-1" OutputFile="" sate="0" >
+		<NodeC Path="..\..\..\Libraries\STM32_USB-FS-Device_Driver\src\otgd_fs_cal.c" Header="otgd_fs_cal.c" Marker="-1" OutputFile=".\STM3210C-EVAL\otgd_fs_cal.o" sate="0" />
+		<NodeC Path="..\..\..\Libraries\STM32_USB-FS-Device_Driver\src\otgd_fs_dev.c" Header="otgd_fs_dev.c" Marker="-1" OutputFile=".\STM3210C-EVAL\otgd_fs_dev.o" sate="0" />
+		<NodeC Path="..\..\..\Libraries\STM32_USB-FS-Device_Driver\src\otgd_fs_int.c" Header="otgd_fs_int.c" Marker="-1" OutputFile=".\STM3210C-EVAL\otgd_fs_int.o" sate="0" />
+		<NodeC Path="..\..\..\Libraries\STM32_USB-FS-Device_Driver\src\otgd_fs_pcd.c" Header="otgd_fs_pcd.c" Marker="-1" OutputFile=".\STM3210C-EVAL\otgd_fs_pcd.o" sate="0" />
+		<NodeC Path="..\..\..\Libraries\STM32_USB-FS-Device_Driver\src\usb_core.c" Header="usb_core.c" Marker="-1" OutputFile=".\STM3210C-EVAL\usb_core.o" sate="0" />
+		<NodeC Path="..\..\..\Libraries\STM32_USB-FS-Device_Driver\src\usb_init.c" Header="usb_init.c" Marker="-1" OutputFile=".\STM3210C-EVAL\usb_init.o" sate="0" />
+		<NodeC Path="..\..\..\Libraries\STM32_USB-FS-Device_Driver\src\usb_int.c" Header="usb_int.c" Marker="-1" OutputFile=".\STM3210C-EVAL\usb_int.o" sate="0" />
+		<NodeC Path="..\..\..\Libraries\STM32_USB-FS-Device_Driver\src\usb_mem.c" Header="usb_mem.c" Marker="-1" OutputFile=".\STM3210C-EVAL\usb_mem.o" sate="0" />
+		<NodeC Path="..\..\..\Libraries\STM32_USB-FS-Device_Driver\src\usb_regs.c" Header="usb_regs.c" Marker="-1" OutputFile=".\STM3210C-EVAL\usb_regs.o" sate="0" />
+		<NodeC Path="..\..\..\Libraries\STM32_USB-FS-Device_Driver\src\usb_sil.c" Header="usb_sil.c" Marker="-1" OutputFile=".\STM3210C-EVAL\usb_sil.o" sate="0" />
+																								
+	</Group>
+	<Group Header="User" Marker="-1" OutputFile="" sate="0" >
+		<NodeC Path="..\src\audio_codec_cs43l22.c" Header="audio_codec_cs43l22.c" Marker="-1" OutputFile=".\STM3210C-EVAL\audio_codec_cs43l22.o" sate="0" />
+		<NodeC Path="..\src\hw_config.c" Header="hw_config.c" Marker="-1" OutputFile=".\STM3210C-EVAL\hw_config.o" sate="0" />
+		<NodeC Path="..\src\main.c" Header="main.c" Marker="-1" OutputFile=".\STM3210C-EVAL\main.o" sate="0" />
+		<NodeC Path="..\src\stm32f10x_it.c" Header="stm32f10x_it.c" Marker="-1" OutputFile=".\STM3210C-EVAL\stm32f10x_it.o" sate="0" />
+		<NodeC Path="..\src\usb_desc.c" Header="usb_desc.c" Marker="-1" OutputFile=".\STM3210C-EVAL\usb_desc.o" sate="0" />
+		<NodeC Path="..\src\usb_endp.c" Header="usb_endp.c" Marker="-1" OutputFile=".\STM3210C-EVAL\usb_endp.o" sate="0" />
+		<NodeC Path="..\src\usb_istr.c" Header="usb_istr.c" Marker="-1" OutputFile=".\STM3210C-EVAL\usb_istr.o" sate="0" />
+		<NodeC Path="..\src\usb_prop.c" Header="usb_prop.c" Marker="-1" OutputFile=".\STM3210C-EVAL\usb_prop.o" sate="0" />
+		<NodeC Path="..\src\usb_pwr.c" Header="usb_pwr.c" Marker="-1" OutputFile=".\STM3210C-EVAL\usb_pwr.o" sate="0" />
+																								
+	</Group>
+	<Group Header="STM32_EVAL" Marker="-1" OutputFile="" sate="0" >
+		<NodeC Path="..\..\..\Utilities\STM32_EVAL\stm32_eval.c" Header="stm32_eval.c" Marker="-1" OutputFile=".\STM3210C-EVAL\stm32_eval.o" sate="0" />
+		<NodeC Path="..\..\..\Utilities\STM32_EVAL\STM3210C_EVAL\stm3210c_eval_ioe.c" Header="stm3210c_eval_ioe.c" Marker="-1" OutputFile=".\STM3210C-EVAL\stm3210c_eval_ioe.o" sate="0" />
+																								
+	</Group>
+	<Group Header="CMSIS" Marker="-1" OutputFile="" sate="0" >
+		<NodeC Path="..\..\..\Libraries\CMSIS\Core\CM3\system_stm32f10x.c" Header="system_stm32f10x.c" Marker="-1" OutputFile=".\STM3210C-EVAL\system_stm32f10x.o" sate="0" />
+		<NodeC Path="..\..\..\Libraries\CMSIS\Core\CM3\core_cm3.c" Header="core_cm3.c" Marker="-1" OutputFile=".\STM3210C-EVAL\core_cm3.o" sate="0" />
+																								
+	</Group>
+	<Group Header="Doc" Marker="-1" OutputFile="" sate="0" >
+		<NodeText Path="..\readme.txt" Header="readme.txt" Marker="-1" OutputFile="" sate="0" />
+																								
+	</Group>
+	<Options>
+		<Config Header="Standard" >
+			<Set Header="ApplicationBuild" >
+				<Section Header="General" >
+					<Property Header="TargetFamily" Value="ARM" />
+																																																																															
+				</Section>
+																																																													
+			</Set>
+			<Set Header="Target" >
+				<Section Header="ProcessorARM" >
+					<Property Header="Processor" Value="STM32F107VCT6" />
+																																																																															
+				</Section>
+				<Section Header="ToolSetARM" >
+					<Property Header="BuildToolSetARM" Value="ARM\\GNU.config" Removable="1" />
+																																																																															
+				</Section>
+																																																													
+			</Set>
+																																								
+		</Config>
+		<Config Header="STM3210C-EVAL-25MHz" >
+			<Set Header="ApplicationBuild" >
+				<Section Header="Directories" >
+					<Property Header="IncDir" Value="..\..\..\Libraries\CMSIS\Core\CM3;..\..\..\Libraries\STM32_USB-FS-Device_Driver\inc;..\..\..\Libraries\STM32F10x_StdPeriph_Driver\inc;..\..\..\Utilities\STM32_EVAL;..\..\..\Utilities\STM32_EVAL\STM3210C_EVAL;..\inc" Removable="1" />
+					<Property Header="OutDir" Value="$(ApplicationDir)\STM3210C-EVAL" Removable="1" />
+					<Property Header="ListDir" Value="$(ApplicationDir)\STM3210C-EVAL" Removable="1" />
+																																																																															
+				</Section>
+																																																													
+			</Set>
+			<Set Header="GCC" >
+				<Section Header="Defines" >
+					<Property Header="Defines" Value="STM32F10X_CL;USE_STDPERIPH_DRIVER;USE_STM3210C_EVAL;EXTERNAL_CRYSTAL_25MHz" Removable="1" />
+																																																																															
+				</Section>
+				<Section Header="OPTIMIZE" >
+					<Property Header="Optimize" Value="-Os" Removable="1" />
+																																											
+				</Section>
+				<Section Header="WARNINGS" >
+					<Property Header="UNUSEDWARNINGS" Value="" Removable="1" />
+					<Property Header="SHADOWARNINGS" Value="" Removable="1" />
+					<Property Header="SWITCHWARNINGS" Value="" Removable="1" />
+					<Property Header="CONSWARNINGS" Value="" Removable="1" />
+																
+				</Section>
+												
+			</Set>
+			<Set Header="LD" >
+				<Section Header="Startup" >
+					<Property Header="DEFAULTSTARTUP" Value="No" Removable="1" />
+					<Property Header="File" Value="" Removable="1" />
+																																																																															
+				</Section>
+				<Section Header="Scripts" >
+					<Property Header="SCRIPTFILES" Value="Yes" Removable="1" />
+					<Property Header="File" Value="" Removable="1" />
+					<Property Header="StarterKitLimit" Value="No" Removable="1" />
+																																																																															
+				</Section>
+				<Section Header="LIB" >
+					<Property Header="UART0PUTC" Value="0" Removable="1" />
+					<Property Header="STLIB" Value="0" Removable="1" />
+																																																																															
+				</Section>
+																																																													
+			</Set>
+					
+		</Config>
+		<Config Header="STM3210C-EVAL-14MHz" >
+			<Set Header="ApplicationBuild" >
+				<Section Header="Directories" >
+					<Property Header="IncDir" Value="..\..\..\Libraries\CMSIS\Core\CM3;..\..\..\Libraries\STM32_USB-FS-Device_Driver\inc;..\..\..\Libraries\STM32F10x_StdPeriph_Driver\inc;..\..\..\Utilities\STM32_EVAL;..\..\..\Utilities\STM32_EVAL\STM3210C_EVAL;..\inc" Removable="1" />
+					<Property Header="OutDir" Value="$(ApplicationDir)\STM3210C-EVAL" Removable="1" />
+					<Property Header="ListDir" Value="$(ApplicationDir)\STM3210C-EVAL" Removable="1" />
+																																																																															
+				</Section>
+																																																													
+			</Set>
+			<Set Header="GCC" >
+				<Section Header="Defines" >
+					<Property Header="Defines" Value="STM32F10X_CL;USE_STDPERIPH_DRIVER;USE_STM3210C_EVAL;EXTERNAL_CRYSTAL_14_7456MHz;HSE_VALUE" Removable="1" />
+																																																																															
+				</Section>
+				<Section Header="OPTIMIZE" >
+					<Property Header="Optimize" Value="-Os" Removable="1" />
+																																																																															
+				</Section>
+																																																													
+			</Set>
+			<Set Header="LD" >
+				<Section Header="Startup" >
+					<Property Header="DEFAULTSTARTUP" Value="No" Removable="1" />
+					<Property Header="File" Value="" Removable="1" />
+																																																																															
+				</Section>
+				<Section Header="Scripts" >
+					<Property Header="StarterKitLimit" Value="No" Removable="1" />
+					<Property Header="SCRIPTFILES" Value="Yes" Removable="1" />
+					<Property Header="File" Value="" Removable="1" />
+																																																																															
+				</Section>
+				<Section Header="LIB" >
+					<Property Header="UART0PUTC" Value="0" Removable="1" />
+					<Property Header="STLIB" Value="0" Removable="1" />
+																																																																															
+				</Section>
+																																																													
+			</Set>
+																																								
+		</Config>
+			
+	</Options>
+</ApplicationBuild>

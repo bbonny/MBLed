@@ -1,0 +1,4 @@
+
+<Project Header="Project 'JoyStickMouse'" Path=".\JoyStickMouse.rprj" Project="Yes" OutputFile="" sate="96" ActiveApp="JoyStickMouse" >
+	<ApplicationBuild Header="JoyStickMouse" Extern=".\JoyStickMouse.rapp" Path=".\JoyStickMouse.rapp" OutputFile=".\STM3210C-EVAL\JoyStickMouse.elf" Config="STM3210C-EVAL" sate="98" />
+</Project>

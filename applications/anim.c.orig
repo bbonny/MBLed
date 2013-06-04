@@ -1,0 +1,179 @@
+/*
+ * anim.c
+ *
+ * Animation application
+ *
+ * Copyright 2011 - Benjamin Bonny    <benjamin.bonny@gmail.com>,
+ *                  Cédric Le Ninivin <cedriclen@gmail.com>,
+ *                  Guillaume Normand <guillaume.normand.gn@gmail.com>          
+ *
+ * All rights reserved.
+ * MB Led
+ * Telecom ParisTech - ELECINF344/ELECINF381
+ *
+ * This file is part of MB Led Project.
+ *
+ * MB Led Project is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * MB Led Project is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with MB Led Project.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ *
+ */
+
+#include <FreeRTOS.h>
+#include <task.h>
+#include <stm32f10x.h>
+
+
+#ifdef MBLED
+#include "image.h"
+#else
+#include "image_glip.h"
+#endif
+#include "lib_image.h"
+#include "animationDescriptor.h"
+#include "catalogue.h"
+
+#include "network.h"
+#include "algo.h"
+#include "position.h"
+#include "synchro.h"
+#include "debug.h"
+
+// Buffer which is read by the display interruption
+extern image_t bufferIMG;
+
+// contains the image to display
+static pixel_t current_frame1 [64];
+static pixel_t current_frame2 [64];
+
+const AnimationDescriptor * currentAnimation;
+// algorithm variable
+extern int8_t  minI, minJ, maxI, maxJ;
+extern uint8_t current_demo; // Used to check if it's always the turn of the task
+
+
+<<<<<<< HEAD
+static int8_t pos = 0;
+static int8_t* me; 
+  
+
+void T_anim(void *pvParameters){
+  uint8_t my_id = (unsigned int) pvParameters;
+  pixel_t *current_frame = current_frame1;
+  uint8_t switcher = 2;
+  currentAnimation = animationList[0];
+
+  for(;;){
+    if(current_demo == my_id){
+      
+      network_max_values();
+      me = get_block_me();
+      
+      
+      
+=======
+//Calculate which anim we have to display.
+uint8_t which_anim(){
+  network_max_values();
+  
+  int8_t size_i = maxI - minI + 1;
+  int8_t size_j = maxJ - minJ + 1;
+
+  writeHexDebug(size_i);
+  writeHexDebug(size_j);
+  writeDebugInit("\r\n");
+
+  if(size_i >= 4 || size_j >= 4)
+    return 2;
+  else if(size_i == 3 || size_j == 3)
+    return 1;
+  return 0;
+}
+
+
+
+
+
+void T_anim(void *pvParameters){
+  uint8_t my_id = (unsigned int) pvParameters;
+
+
+  int8_t pos = 0;
+  int8_t old_pos = -1;
+  int8_t* me;
+  int8_t old_north=-1;
+  int8_t new_north;
+  uint8_t anim;
+
+  for(;;){
+    if(current_demo == my_id){
+
+      anim = which_anim();
+      currentAnimation = animationList[anim];
+ 
+      network_max_values();
+      me = get_block_me();
+
+      
+
+>>>>>>> Changement d'animation en fonction de la taille... Attente du code de benj
+      // Find my position into the rectangular shape
+      for(int i=0; i < currentAnimation->nb_colonnes; i++){
+	for(int j=0; j < currentAnimation->nb_lignes  ; j++){	
+	  if(me[I] == minI + i && me[J] == minJ + j){
+	    pos =  currentAnimation->nb_lignes* i + j;
+	  }
+	}
+      }
+<<<<<<< HEAD
+    
+    
+      memcpy (current_frame,
+	      &currentAnimation->data[(pos)*64*(currentAnimation->nb_images)+(((current_time())/(currentAnimation->delai))%(currentAnimation->nb_images))*64],
+	      64*sizeof(short)
+=======
+      writeDebugInit(" POS : ");
+      writeHexDebug(pos);
+      writeDebugInit(" / Anim : ");
+      writeHexDebug(anim);
+      writeDebugInit("\r\n");
+    
+
+
+    new_north = getDirection();
+    if(((int8_t)new_north != (int8_t)old_north) || pos!=old_pos){
+      memcpy (current,
+	      &currentAnimation->data[(pos)*IMAGE_SIZE*(currentAnimation->nb_images)],
+	      (currentAnimation->nb_images)*IMAGE_SIZE*sizeof(short)
+>>>>>>> Changement d'animation en fonction de la taille... Attente du code de benj
+	      );
+      
+   
+      // rotate the part according to the north direction
+      lib_image_direct_image(current_frame);
+      
+      if(switcher==1){
+	switcher = 2 ;
+	current_frame = current_frame2;
+      }
+      else{
+	switcher = 1 ;
+	current_frame = current_frame1;
+      }
+
+      // Select the good part of the animation according to: time and position
+      set_image_pointer(current_frame);
+    }
+    vTaskDelay(50);
+  }
+}

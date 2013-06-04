@@ -1,0 +1,10 @@
+Le nom du fichier GIF source doit être de la forme
+
+  nom-de-fichier-LIGNES-COLONNES.gif
+
+Si le nom du fichier contient la chaîne "stopmap" (ou "stop-map" ou
+"stop_map"), la table des positions ne sera plus prise en compte après
+le début de l'animation.
+
+Si le nom du fichier contient la chaîne "desynchronize", les blocs
+seront totalement désynchronisés au début de cette animation.

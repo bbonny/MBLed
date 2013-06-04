@@ -1,0 +1,4 @@
+
+<Project Header="Project 'AudioStreaming'" Path=".\AudioStreaming.rprj" Project="Yes" OutputFile="" sate="96" ActiveApp="AudioStreaming" >
+	<ApplicationBuild Header="AudioStreaming" Extern=".\AudioStreaming.rapp" Path=".\AudioStreaming.rapp" OutputFile=".\STM3210C-EVAL\AudioStreaming.elf" sate="98" Config="STM3210C-EVAL-25MHz" />
+</Project>

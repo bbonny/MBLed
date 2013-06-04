@@ -1,0 +1,37 @@
+static const uint16_t ode_to_joy[]={200, 2, 4
+				    ,RE7,2,RE7,2,REd7,2,FA7,2
+				    ,FA7,2,REd7,2,RE7,2,DO7,2
+				    ,LAd6,2,LAd6,2,DO7,2,RE7,2
+				    ,RE7,3,DO7,1,DO7,4
+				    ,RE7,2,RE7,2,REd7,2,FA7,2
+				    ,FA7,2,REd7,2,RE7,2,DO7,2
+				    ,LAd6,2,LAd6,2,DO7,2,RE7,2
+				    ,DO7,3,LAd6,1,LAd6,4
+				    ,DO7,2,DO7,2,RE7,2,LAd6,2
+				    ,DO7,2,RE7,1,REd7,1,RE7,2,LAd6,2
+				    ,DO7,2,RE7,1,REd7,1,RE7,2,DO7,2
+				    ,LAd6,2,DO7,2,FA6,2,RE7,2
+				    ,RE7,2,RE7,2,REd7,2,FA7,2
+				    ,FA7,2,REd7,2,RE7,2,DO7,2
+				    ,LAd6,2,LAd6,2,DO7,2,RE7,2
+				    ,DO7,3,LAd6,1,LAd6,4
+				    ,0,0
+				    ,LAd6,2,LAd6,2,DO7,2,RE7,2
+				    ,RE7,2,DO7,2,LAd6,2,FA6,2
+				    ,RE6,2,RE6,2,FA6,2,LAd6,2
+				    ,LAd6,3,LA6,1,LA6,4
+				    ,LAd6,2,LAd6,2,DO7,2,RE7,2
+				    ,RE7,2,DO7,2,LAd6,2,FA6,2
+				    ,RE6,2,RE6,2,FA6,2,LAd6,2
+				    ,FA6,3,RE6,1,RE6,4
+				    ,FA6,2,LA6,2,LAd6,2,LAd6,2
+				    ,LA6,2,LAd6,1,DO7,1,LAd6,2,FA6,2
+				    ,LA6,2,LAd6,1,DO7,1,LA6,2,LA6,2
+				    ,SOL6,2,MI6,2,FA6,2,LAd6,2
+				    ,LAd6,2,LAd6,2,DO7,2,RE7,2
+				    ,RE7,2,DO7,2,LAd6,2,FA6,2
+				    ,RE6,2,RE6,2,FA6,2,LAd6,2
+				    ,FA6,3,RE6,1,RE6,4
+				    ,0,0
+				    
+};

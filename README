@@ -1,0 +1,46 @@
+
+
+List of the folders :
+*applications : Applications files for the MB Led. There you can put your application.
+*bloc : Files for the MB Led system.
+*common : Files to write in flash.
+*dataAnim : Files resulting from the gif2glip's program. 
+*gif2glip : Files to convert a gif in a GLiP/MBLed animation (thanks to the GLiP project)
+*License : The FreeRTOS license
+*Source :  FreeRTOS files.
+*STM32: STM32 files.
+ 
+
+The applications can work on GLiP or MBLed.
+To define which modules you want to use, change the bloc/Makefile : there is a line -DMBLED by default.
+(You can put -DGLIP for GLiP or -DGLIP_DEBUG, if it's for a GLiP debug)
+
+
+Block can send to :
+*An interface (equivalent of an UART)
+*Everybody (it's a broadcast)
+*Everybody except one neighbor (it's a spread)
+
+Detail :
+
+*****applications*****
+In the "applications" folder, you can create an application (follow the skeleton.c instructions). 
+There are also examples : a snake, the topology of the network, ...
+
+*****bloc *****
+In src, you will find the C files.
+In inc, you will find the H files.
+
+There is 8 sub-folders :
+buzzer -> Functions for the buzzer.
+image -> Functions for the led driver
+irda -> Functions for the irda
+manager -> Functions for the remote task and the management of the applications tasks.
+network -> Functions for the algorithm
+synchro -> Functions for the synchronization
+utils -> Miscellaneous functions.
+watchdog -> Functions for the watchdog
+
+
+
+

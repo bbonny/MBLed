@@ -1,0 +1,4 @@
+
+<Project Header="Project 'AudioSpeaker'" Path=".\AudioSpeaker.rprj" Project="Yes" OutputFile="" sate="96" ActiveApp="AudioSpeaker" >
+	<ApplicationBuild Header="AudioSpeaker" Extern=".\AudioSpeaker.rapp" Path=".\AudioSpeaker.rapp" OutputFile=".\STM3210B-EVAL\AudioSpeaker.elf" Config="STM3210B-EVAL" sate="98" />
+</Project>

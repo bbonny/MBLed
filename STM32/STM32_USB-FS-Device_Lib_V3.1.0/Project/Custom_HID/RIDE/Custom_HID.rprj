@@ -1,0 +1,4 @@
+
+<Project Header="Project 'Custom_HID'" Path=".\Custom_HID.rprj" Project="Yes" OutputFile="" sate="96" ActiveApp="Custom_HID" >
+	<ApplicationBuild Header="Custom_HID" Extern=".\Custom_HID.rapp" Path=".\Custom_HID.rapp" OutputFile=".\STM3210C-EVAL\Custom_HID.elf" Config="STM3210C-EVAL" sate="98" />
+</Project>

@@ -1,0 +1,4 @@
+
+<Project Header="Project 'VirtualCOMPort'" Path=".\VirtualCOMPort.rprj" Project="Yes" OutputFile="" sate="96" ActiveApp="VirtualCOMPort" >
+	<ApplicationBuild Header="VirtualCOMPort" Extern=".\VirtualCOMPort.rapp" Path=".\VirtualCOMPort.rapp" OutputFile=".\STM3210C-EVAL\VirtualCOMPort.elf" Config="STM3210C-EVAL" sate="98" />
+</Project>
